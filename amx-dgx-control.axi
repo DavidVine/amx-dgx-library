@@ -94,7 +94,7 @@ define_function dgxEnableSwitchMulti (dev dgxSwitcher, integer level, integer in
 }
 
 /*
- * Function:	dgxDisableInput
+ * Function:	dgxDisableSwitchInput
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
  * 				integer level - level
@@ -102,13 +102,13 @@ define_function dgxEnableSwitchMulti (dev dgxSwitcher, integer level, integer in
  *
  * Description:	Disconnect an input from all routed outputs on a DGX.
  */
-define_function dgxDisableInput (dev dgxSwitcher, integer level, integer input)
+define_function dgxDisableSwitchInput (dev dgxSwitcher, integer level, integer input)
 {
 	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_TAKE")
 }
 
 /*
- * Function:	dgxDisableInputMulti
+ * Function:	dgxDisableSwitchInputMulti
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
  * 				integer level - level
@@ -116,7 +116,7 @@ define_function dgxDisableInput (dev dgxSwitcher, integer level, integer input)
  *
  * Description:	Disconnect an input from all routed outputs on a DGX.
  */
-define_function dgxDisableInputMulti (dev dgxSwitcher, integer level, integer inputs[])
+define_function dgxDisableSwitchInputMulti (dev dgxSwitcher, integer level, integer inputs[])
 {
 	char inputString[200]	// should be big enough to handle a DGX64
 	integer i
@@ -144,7 +144,7 @@ define_function dgxDisableInputMulti (dev dgxSwitcher, integer level, integer in
  *
  * Description:	Disconnect an output from any routed input on a DGX.
  */
-define_function dgxDisableOutput (dev dgxSwitcher, integer level, integer output)
+define_function dgxDisableSwitchOutput (dev dgxSwitcher, integer level, integer output)
 {
 	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
 }
@@ -158,7 +158,7 @@ define_function dgxDisableOutput (dev dgxSwitcher, integer level, integer output
  *
  * Description:	Disconnect an output from any routed input on a DGX.
  */
-define_function dgxDisableOutputMulti (dev dgxSwitcher, integer level, integer outputs[])
+define_function dgxDisableSwitchOutputMulti (dev dgxSwitcher, integer level, integer outputs[])
 {
 	char outputString[200]	// should be big enough to handle a DGX64
 	integer i
@@ -193,7 +193,7 @@ define_function dgxDisableOutputMulti (dev dgxSwitcher, integer level, integer o
  *
  * Description:	Request the status (routes) for an input on a DGX.
  */
-define_function dgxRequestInputStatus (dev dgxSwitcher, integer level, integer input)
+define_function dgxRequestSwitchInputStatus (dev dgxSwitcher, integer level, integer input)
 {
 	sendCommand (dgxSwitcher, "DGX_COMMAND_STATUS_REQUEST,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_TAKE")
 }
@@ -207,7 +207,7 @@ define_function dgxRequestInputStatus (dev dgxSwitcher, integer level, integer i
  *
  * Description:	Request the status (route) for an output on a DGX.
  */
-define_function dgxRequestOutputStatus (dev dgxSwitcher, integer level, integer output)
+define_function dgxRequestSwitchOutputStatus (dev dgxSwitcher, integer level, integer output)
 {
 	sendCommand (dgxSwitcher, "DGX_COMMAND_STATUS_REQUEST,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
 }
