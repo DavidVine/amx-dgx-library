@@ -108,7 +108,7 @@ define_function dgxDisableSwitchInput (dev dgxSwitcher, integer level, integer i
 }
 
 /*
- * Function:	dgxDisableSwitchInputMulti
+ * Function:	dgxDisableSwitchMultipleInputs
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
  * 				integer level - level
@@ -116,7 +116,7 @@ define_function dgxDisableSwitchInput (dev dgxSwitcher, integer level, integer i
  *
  * Description:	Disconnect an input from all routed outputs on a DGX.
  */
-define_function dgxDisableSwitchInputMulti (dev dgxSwitcher, integer level, integer inputs[])
+define_function dgxDisableSwitchMultipleInputs (dev dgxSwitcher, integer level, integer inputs[])
 {
 	char inputString[200]	// should be big enough to handle a DGX64
 	integer i
