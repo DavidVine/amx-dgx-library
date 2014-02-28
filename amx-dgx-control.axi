@@ -65,7 +65,7 @@ define_function dgxEnableSwitch (dev dgxSwitcher, integer level, integer input, 
 }
 
 /*
- * Function:	dgxEnableSwitchMulti
+ * Function:	dgxEnableSwitchMultipleOutputs
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
  * 				integer level - level
@@ -74,7 +74,7 @@ define_function dgxEnableSwitch (dev dgxSwitcher, integer level, integer input, 
  *
  * Description:	Switch an input to multiple outputs on a DGX.
  */
-define_function dgxEnableSwitchMulti (dev dgxSwitcher, integer level, integer input, integer outputs[])
+define_function dgxEnableSwitchMultipleOutputs (dev dgxSwitcher, integer level, integer input, integer outputs[])
 {
 	char outputString[200]	// should be big enough to handle a DGX64
 	integer i
