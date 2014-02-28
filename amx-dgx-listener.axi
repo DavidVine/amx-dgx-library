@@ -29,7 +29,11 @@ include 'amx-dgx-api'
 define_variable
 
 #if_not_defined dvDgxSwitchers
-dev dvDgxSwitchers[] = { 5002:1:0 }
+dev dvDgxSwitchers[] = { 5002:2:0 }
+#end_if
+
+#if_not_defined dvDgxDiagnoticsAuxileries
+dev dvDgxDiagnoticsAuxileries[] = { 5002:3:0 }
 #end_if
 
 
@@ -85,7 +89,15 @@ data_event[dvDgxSwitchers]
 {
 	command:
 	{
-		#warn '@TODO - amx-dgx-listener - data_event to capture returned commands from DGX switcher'
+		#warn '@TODO - amx-dgx-listener - data_event to capture returned commands from DGX switchers'
+	}
+}
+
+data_event[dvDgxDiagnoticsAuxileries]
+{
+	command:
+	{
+		#warn '@TODO - amx-dgx-listener - data_event to capture responses on the diagnostics/auxilery ports'
 	}
 }
 
