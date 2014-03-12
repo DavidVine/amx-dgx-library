@@ -54,6 +54,4 @@ char DGX_COMMAND_SUB_TAKE[]   = 'T'
 char DGX_COMMAND_SUB_CANCEL[] = 'X'
 
 
-
-
 #end_if
