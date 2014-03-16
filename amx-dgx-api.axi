@@ -30,6 +30,19 @@ integer DGX_32_MAX_VIDEO_OUTPUTS = 32
 integer DGX_64_MAX_VIDEO_INPUTS  = 64
 integer DGX_64_MAX_VIDEO_OUTPUTS = 64
 
+/*
+ * --------------------
+ * DGX ports
+ * --------------------
+ */
+
+// note: DGX port 1 reserved for future functionality
+integer DGX_PORT_SWITCHER = 2
+integer DGX_PORT_BASIC_BCS_COMMANDS = 2
+integer DGX_PORT_DIAGNOSTICS = 3
+integer DGX_PORT_AUXILIARY_BCS_COMMANDS = 3
+integer DGX_PORT_DUET_MODULE = 4
+
 
 /*
  * --------------------
