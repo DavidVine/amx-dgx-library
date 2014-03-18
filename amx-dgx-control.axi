@@ -53,14 +53,14 @@ char VERSION_AMX_DGX_CONTROL[] = 'v1.0.0'
  * Function:	dgxEnableSwitch
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
- * 				integer level - level
+ * 				integer switchLevel - VM on DGX being switched (DGX_SWITCH_LEVEL_ALL | DGX_SWITCH_LEVEL_VIDEO | DGX_SWITCH_LEVEL_AUDIO)
  * 				integer input - input
  * 				integer output - output
  *
  * Description:	Switch an input to an output on a DGX.
  */
-define_function dgxEnableSwitch (dev dgxSwitcher, integer level, integer input, integer output)
-{
+define_function dgxEnableSwitch (dev dgxSwitcher, integer switchLevel, integer input, integer output)
+{DGX_SWITCH_LEVEL_ALL
 	sendCommand (dgxSwitcher, "DGX_COMMAND_SWITCH,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
 }
 
