@@ -60,21 +60,21 @@ char VERSION_AMX_DGX_CONTROL[] = 'v1.0.0'
  * Description:	Switch an input to an output on a DGX.
  */
 define_function dgxEnableSwitch (dev dgxSwitcher, integer switchLevel, integer input, integer output)
-{DGX_SWITCH_LEVEL_ALL
-	sendCommand (dgxSwitcher, "DGX_COMMAND_SWITCH,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
+{
+	sendCommand (dgxSwitcher, "DGX_COMMAND_SWITCH,DGX_COMMAND_SUB_LEVEL,itoa(switchLevel),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
 }
 
 /*
  * Function:	dgxEnableSwitchMultipleOutputs
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
- * 				integer level - level
+ * 				integer switchLevel - VM on DGX being switched (DGX_SWITCH_LEVEL_ALL | DGX_SWITCH_LEVEL_VIDEO | DGX_SWITCH_LEVEL_AUDIO)
  * 				integer input - input
  * 				integer outputs[] - output array
  *
  * Description:	Switch an input to multiple outputs on a DGX.
  */
-define_function dgxEnableSwitchMultipleOutputs (dev dgxSwitcher, integer level, integer input, integer outputs[])
+define_function dgxEnableSwitchMultipleOutputs (dev dgxSwitcher, integer switchLevel, integer input, integer outputs[])
 {
 	char outputString[200]	// should be big enough to handle a DGX64
 	integer i
@@ -90,33 +90,33 @@ define_function dgxEnableSwitchMultipleOutputs (dev dgxSwitcher, integer level, 
 		}
 	}
 	
-	sendCommand (dgxSwitcher, "DGX_COMMAND_SWITCH,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_OUTPUT,outputString,DGX_COMMAND_SUB_TAKE")
+	sendCommand (dgxSwitcher, "DGX_COMMAND_SWITCH,DGX_COMMAND_SUB_LEVEL,itoa(switchLevel),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_OUTPUT,outputString,DGX_COMMAND_SUB_TAKE")
 }
 
 /*
  * Function:	dgxDisableSwitchInput
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
- * 				integer level - level
+ * 				integer switchLevel - VM on DGX being switched (DGX_SWITCH_LEVEL_ALL | DGX_SWITCH_LEVEL_VIDEO | DGX_SWITCH_LEVEL_AUDIO)
  * 				integer input - input
  *
  * Description:	Disconnect an input from all routed outputs on a DGX.
  */
-define_function dgxDisableSwitchInput (dev dgxSwitcher, integer level, integer input)
+define_function dgxDisableSwitchInput (dev dgxSwitcher, integer switchLevel, integer input)
 {
-	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_TAKE")
+	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(switchLevel),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_TAKE")
 }
 
 /*
  * Function:	dgxDisableSwitchMultipleInputs
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
- * 				integer level - level
+ * 				integer switchLevel - VM on DGX being switched (DGX_SWITCH_LEVEL_ALL | DGX_SWITCH_LEVEL_VIDEO | DGX_SWITCH_LEVEL_AUDIO)
  * 				integer inputs[] - input array
  *
  * Description:	Disconnect an input from all routed outputs on a DGX.
  */
-define_function dgxDisableSwitchMultipleInputs (dev dgxSwitcher, integer level, integer inputs[])
+define_function dgxDisableSwitchMultipleInputs (dev dgxSwitcher, integer switchLevel, integer inputs[])
 {
 	char inputString[200]	// should be big enough to handle a DGX64
 	integer i
@@ -132,33 +132,33 @@ define_function dgxDisableSwitchMultipleInputs (dev dgxSwitcher, integer level, 
 		}
 	}
 	
-	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_INPUT,inputString,DGX_COMMAND_SUB_TAKE")
+	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(switchLevel),DGX_COMMAND_SUB_INPUT,inputString,DGX_COMMAND_SUB_TAKE")
 }
 
 /*
  * Function:	dgxDisableOutput
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
- * 				integer level - level
+ * 				integer switchLevel - VM on DGX being switched (DGX_SWITCH_LEVEL_ALL | DGX_SWITCH_LEVEL_VIDEO | DGX_SWITCH_LEVEL_AUDIO)
  * 				integer output - output
  *
  * Description:	Disconnect an output from any routed input on a DGX.
  */
-define_function dgxDisableSwitchOutput (dev dgxSwitcher, integer level, integer output)
+define_function dgxDisableSwitchOutput (dev dgxSwitcher, integer switchLevel, integer output)
 {
-	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
+	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(switchLevel),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
 }
 
 /*
  * Function:	dgxDisableSwitchMultipleOutputs
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
- * 				integer level - level
+ * 				integer switchLevel - VM on DGX being switched (DGX_SWITCH_LEVEL_ALL | DGX_SWITCH_LEVEL_VIDEO | DGX_SWITCH_LEVEL_AUDIO)
  * 				integer outputs[] - output array
  *
  * Description:	Disconnect an output from any routed input on a DGX.
  */
-define_function dgxDisableSwitchMultipleOutputs (dev dgxSwitcher, integer level, integer outputs[])
+define_function dgxDisableSwitchMultipleOutputs (dev dgxSwitcher, integer switchLevel, integer outputs[])
 {
 	char outputString[200]	// should be big enough to handle a DGX64
 	integer i
@@ -174,7 +174,7 @@ define_function dgxDisableSwitchMultipleOutputs (dev dgxSwitcher, integer level,
 		}
 	}
 	
-	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_OUTPUT,outputString,DGX_COMMAND_SUB_TAKE")
+	sendCommand (dgxSwitcher, "DGX_COMMAND_DISCONNECT,DGX_COMMAND_SUB_LEVEL,itoa(switchLevel),DGX_COMMAND_SUB_OUTPUT,outputString,DGX_COMMAND_SUB_TAKE")
 }
 
 
@@ -188,28 +188,28 @@ define_function dgxDisableSwitchMultipleOutputs (dev dgxSwitcher, integer level,
  * Function:	dgxRequestInputStatus
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
- * 				integer level - level
+ * 				integer switchLevel - VM on DGX being switched (DGX_SWITCH_LEVEL_ALL | DGX_SWITCH_LEVEL_VIDEO | DGX_SWITCH_LEVEL_AUDIO)
  * 				integer input - input
  *
  * Description:	Request the status (routes) for an input on a DGX.
  */
-define_function dgxRequestSwitchInputStatus (dev dgxSwitcher, integer level, integer input)
+define_function dgxRequestSwitchInputStatus (dev dgxSwitcher, integer switchLevel, integer input)
 {
-	sendCommand (dgxSwitcher, "DGX_COMMAND_STATUS_REQUEST,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_TAKE")
+	sendCommand (dgxSwitcher, "DGX_COMMAND_STATUS_REQUEST,DGX_COMMAND_SUB_LEVEL,itoa(switchLevel),DGX_COMMAND_SUB_INPUT,itoa(input),DGX_COMMAND_SUB_TAKE")
 }
 
 /*
  * Function:	dgxRequestOutputStatus
  *
  * Arguments:	dev dgxSwitcher - DGX switcher
- * 				integer level - level
+ * 				integer switchLevel - VM on DGX being switched (DGX_SWITCH_LEVEL_ALL | DGX_SWITCH_LEVEL_VIDEO | DGX_SWITCH_LEVEL_AUDIO)
  * 				integer output - output
  *
  * Description:	Request the status (route) for an output on a DGX.
  */
-define_function dgxRequestSwitchOutputStatus (dev dgxSwitcher, integer level, integer output)
+define_function dgxRequestSwitchOutputStatus (dev dgxSwitcher, integer switchLevel, integer output)
 {
-	sendCommand (dgxSwitcher, "DGX_COMMAND_STATUS_REQUEST,DGX_COMMAND_SUB_LEVEL,itoa(level),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
+	sendCommand (dgxSwitcher, "DGX_COMMAND_STATUS_REQUEST,DGX_COMMAND_SUB_LEVEL,itoa(switchLevel),DGX_COMMAND_SUB_OUTPUT,itoa(output),DGX_COMMAND_SUB_TAKE")
 }
 
 #end_if
