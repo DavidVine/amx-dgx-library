@@ -66,5 +66,14 @@ char DGX_COMMAND_SUB_OUTPUT[] = 'O'
 char DGX_COMMAND_SUB_TAKE[]   = 'T'
 char DGX_COMMAND_SUB_CANCEL[] = 'X'
 
+/*
+ * --------------------
+ * DGX command subheaders
+ * --------------------
+ */
+
+integer DGX_SWITCH_LEVEL_ALL = 0
+integer DGX_SWITCH_LEVEL_VIDEO = 1
+integer DGX_SWITCH_LEVEL_AUDIO = 2
 
 #end_if
